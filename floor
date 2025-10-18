@@ -1,0 +1,20 @@
+local player = game:GetService("Players"):WaitForChild("topraqk1")
+local event = game:GetService("ReplicatedStorage"):WaitForChild("PlaceStructure"):WaitForChild("ClientPlacedBlueprint")
+
+local startX, endX = 35, -157
+local startZ, endZ = 430, 622
+local y = 19.2
+local step = 8 -- her blok arası 8 birim
+
+for z = startZ, endZ, step do
+	for x = startX, endX, -step do
+		local args = {
+			"Floor2Large",
+			CFrame.new(x, y, z, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+			player
+		}
+
+		event:FireServer(unpack(args))
+		task.wait(0.1)
+	end
+end
