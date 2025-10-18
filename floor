@@ -17,6 +17,5 @@ for z = startZ, endZ, step do
 		}
 		
 		event:FireServer(unpack(args))
-		task.wait(0.1) -- küçük gecikme: lag olmasın
 	end
 end
