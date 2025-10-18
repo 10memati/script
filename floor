@@ -1,10 +1,12 @@
+-- StarterPlayerScripts içine LocalScript olarak koy
 local player = game:GetService("Players"):WaitForChild("topraqk1")
 local event = game:GetService("ReplicatedStorage"):WaitForChild("PlaceStructure"):WaitForChild("ClientPlacedBlueprint")
 
+-- Arsa sınırları
 local startX, endX = 35, -157
 local startZ, endZ = 430, 622
 local y = 19.2
-local step = 8 -- her blok arası 8 birim
+local step = 8 -- her kare arası mesafe
 
 for z = startZ, endZ, step do
 	for x = startX, endX, -step do
@@ -13,8 +15,8 @@ for z = startZ, endZ, step do
 			CFrame.new(x, y, z, 1, 0, 0, 0, 1, 0, 0, 0, 1),
 			player
 		}
-
+		
 		event:FireServer(unpack(args))
-		task.wait(0.1)
+		task.wait(0.1) -- küçük gecikme: lag olmasın
 	end
 end
