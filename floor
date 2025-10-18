@@ -2,20 +2,20 @@
 local player = game:GetService("Players"):WaitForChild("topraqk1")
 local event = game:GetService("ReplicatedStorage"):WaitForChild("PlaceStructure"):WaitForChild("ClientPlacedBlueprint")
 
--- Arsa sınırları
-local startX, endX = 35, -157
-local startZ, endZ = 430, 622
-local y = 19.2
-local step = 8 -- her kare arası mesafe
+-- Ayarlar
+local startX, endX = 35, -157  -- X ekseni: sağdan sola
+local z = 430                  -- sadece ilk sıra (sabit)
+local y = 19.2                 -- yükseklik
+local step = 8                 -- her blok arası mesafe
 
-for z = startZ, endZ, step do
-	for x = startX, endX, -step do
-		local args = {
-			"Floor2Large",
-			CFrame.new(x, y, z, 1, 0, 0, 0, 1, 0, 0, 0, 1),
-			player
-		}
-		
-		event:FireServer(unpack(args))
-	end
+-- Sadece 430. sırayı doldur
+for x = startX, endX, -step do
+	local args = {
+		"Floor2Large",
+		CFrame.new(x, y, z, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+		player
+	}
+
+	event:FireServer(unpack(args))
+	task.wait(0.1) -- biraz geciktir ki lag olmasın
 end
