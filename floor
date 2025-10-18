@@ -2,13 +2,14 @@
 local player = game:GetService("Players"):WaitForChild("topraqk1")
 local event = game:GetService("ReplicatedStorage"):WaitForChild("PlaceStructure"):WaitForChild("ClientPlacedBlueprint")
 
--- Ayarlar
-local startX, endX = 35, -157  -- X ekseni: sağdan sola
-local z = 430                  -- sadece ilk sıra (sabit)
-local y = 19.2                 -- yükseklik
-local step = 8                 -- her blok arası mesafe
+-- Başlangıç ve bitiş konumları
+local startX = 35
+local endX = -157
+local y = 19.2
+local z = 430
+local step = 8 -- her blok arası 8 birim
 
--- Sadece 430. sırayı doldur
+-- X ekseni boyunca döngü (sadece tek sıra)
 for x = startX, endX, -step do
 	local args = {
 		"Floor2Large",
@@ -17,5 +18,5 @@ for x = startX, endX, -step do
 	}
 
 	event:FireServer(unpack(args))
-	task.wait(0.1) -- biraz geciktir ki lag olmasın
+	task.wait(0.1) -- biraz bekle (lag olmasın diye)
 end
